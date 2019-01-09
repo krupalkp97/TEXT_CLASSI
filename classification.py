@@ -159,3 +159,16 @@ svm = SGDClassifier(loss='hinge', max_iter=100)
 
 #svm with tfidf features
 svm_tfidf_predictions = train_predict_evaluate_model(classifier=svm,train_features=tfidf_train_features,train_labels=train_labels,test_features=tfidf_test_features,test_labels=test_labels)
+print('svm with tfidf features')
+# Multinomial Naive Bayes with bag of words features
+mnb_bow_predictions = train_predict_evaluate_model(classifier=mnb,train_features=bow_train_features,train_labels=train_labels,test_features=bow_test_features,test_labels=test_labels)
+print('Multinomial Naive Bayes with bag of words features')
+#Multinomial Naive Bayes with tfidf features
+mnb_tfidf_predictions = train_predict_evaluate_model(classifier=mnb,train_features=tfidf_train_features,train_labels=train_labels,test_features=tfidf_test_features,test_labels=test_labels)
+print('Multinomial Naive Bayes with tfidf features')
+# Support Vector Machine with averaged word vector features
+svm_avgwv_predictions = train_predict_evaluate_model(classifier=svm,train_features=avg_wv_train_features,train_labels=train_labels,test_features=avg_wv_test_features,test_labels=test_labels)
+print('Support Vector Machine with averaged word vector features')
+# Support Vector Machine with tfidf weighted averaged word vector features
+svm_tfidfwv_predictions = train_predict_evaluate_model(classifier=svm,train_features=tfidf_wv_train_features,train_labels=train_labels, test_features=tfidf_wv_test_features,test_labels=test_labels)
+print('Support Vector Machine with tfidf weighted averaged word vector features')
