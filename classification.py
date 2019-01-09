@@ -9,11 +9,11 @@ dataset.info()
 headlines=dataset['headline'].values
 labels=dataset['label'].values
 
-train_headlines=headlines[:75000]
-train_labels=labels[:75000]
+train_headlines=headlines[:85000]
+train_labels=labels[:85000]
 
-test_headlines=headlines[75000:]
-test_labels=labels[75000:]
+test_headlines=headlines[85000:]
+test_labels=labels[85000:]
 
 #print(train_headlines.shape,test_headlines.shape)
 
@@ -155,7 +155,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
 
 mnb = MultinomialNB()
-svm = SGDClassifier(loss='hinge', n_iter=100)
+svm = SGDClassifier(loss='hinge', max_iter=100)
 
 #svm with tfidf features
-svm_tfidf_predictions = train_predict_evaluate_model(classifier=svm,train_features=tfidf_train_features,train_labels=train_labels,test_features=tfidf_test_features,test_labels=test_labels)   
+svm_tfidf_predictions = train_predict_evaluate_model(classifier=svm,train_features=tfidf_train_features,train_labels=train_labels,test_features=tfidf_test_features,test_labels=test_labels)
