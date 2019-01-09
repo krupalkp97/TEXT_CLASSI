@@ -143,11 +143,11 @@ print('-------------------------------------------------------------')
 import gensim
 import nltk
 #tokenize corpora
-TOKENIZED_CORPUS =[nltk.word_tokenenize(sentence) for sentence in CORPUS]
-tokenized_new_doc = [nltk.word_tokenenize(sentence) for sentence in new_doc]
+TOKENIZED_CORPUS =[nltk.word_tokenize(sentence) for sentence in CORPUS]
+tokenized_new_doc = [nltk.word_tokenize(sentence) for sentence in new_doc]
 
 #build the word2vec model on our training corpus
-model = gensim.models.word2vec(TOKENIZED_CORPUS,size=10,window=10,min_count=2,sample=1e-3)
+model = gensim.models.Word2Vec(TOKENIZED_CORPUS,size=10,window=10,min_count=2,sample=1e-3)
 def average_word_vector(words,model,vocabulary,num_features):
     feature_vector = np.Zeros((num_features,),dtype='float64')
     nwords=0
@@ -163,3 +163,13 @@ def average_word_vector(words,model,vocabulary,num_features):
     return feature_vector
 
 #generalize above function for a corpus of document
+def averaged_word_vectorizer(corpus,model,num_features):
+    vocabulary = set(model.index2word)
+    features = [average_word_vectors(tokenized_sentence,model,vocabulary,num_features) for tokenized_sentence in corpus]
+    return np.array(features)
+
+#get averaged word vectors
+avg_word_vec_features = averaged_word_vectorizer(corpus=TOKENIZED_CORPUS,model=model,num_features=10)
+print(np.round(avg_word_vec_features,3))
+nd_avg_word_vec_features = averaged_word_vectorizer(corpus=tokenized_new_doc,model=model,num_features=10)
+print(np.round(nd.nd_avg_word_vec_features,3))
